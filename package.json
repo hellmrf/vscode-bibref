@@ -29,7 +29,9 @@
   "engines": {
     "vscode": "^1.97.0"
   },
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:bibref.fetchDOI"
+  ],
   "contributes": {
     "commands": [
       {
