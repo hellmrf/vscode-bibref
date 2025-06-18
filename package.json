@@ -1,24 +1,20 @@
 {
-  "publisher": "antfu",
-  "name": "ext-name",
-  "displayName": "ext-name",
+  "publisher": "hellmrf",
+  "name": "vscode-bibref",
+  "displayName": "vscode-bibref",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.4.1",
-  "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/ext-name#readme",
+  "description": "A VSCode Extension for BibLaTeX-friendly bibliography management",
+  "author": "Heliton Martins <helitonmrf@gmail.com>",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/hellmrf/vscode-bibref#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antfu/ext-name"
+    "url": "https://github.com/hellmrf/vscode-bibref"
   },
   "bugs": {
-    "url": "https://github.com/antfu/ext-name/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/antfu"
+    "url": "https://github.com/hellmrf/vscode-bibref/issues"
   },
   "categories": [
     "Other"
@@ -40,26 +36,25 @@
     "commands": [],
     "configuration": {
       "type": "object",
-      "title": "ext-name",
+      "title": "bibref",
       "properties": {}
     }
   },
   "scripts": {
     "build": "tsdown src/index.ts --external vscode",
-    "dev": "nr build --watch --sourcemap",
-    "prepare": "nr update",
+    "dev": "pnpm run build --watch --sourcemap",
+    "prepare": "pnpm run update",
     "update": "vscode-ext-gen --output src/generated/meta.ts",
     "lint": "eslint .",
-    "vscode:prepublish": "nr build",
+    "vscode:prepublish": "pnpm run build",
     "publish": "vsce publish --no-dependencies",
     "pack": "vsce package --no-dependencies",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp && nr publish"
+    "release": "bumpp && pnpm run publish"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.1",
-    "@antfu/ni": "^23.3.1",
     "@types/node": "^22.13.4",
     "@types/vscode": "^1.97.0",
     "@vscode/vsce": "^3.2.2",
