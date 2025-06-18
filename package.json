@@ -57,7 +57,7 @@
     "pack": "vsce package --no-dependencies",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp && pnpm run publish"
+    "tag": "bumpp"
   },
   "dependencies": {
     "@citation-js/core": "^0.7.18",
