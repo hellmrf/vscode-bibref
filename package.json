@@ -1,7 +1,7 @@
 {
-  "publisher": "hellmrf",
-  "name": "vscode-bibref",
-  "displayName": "vscode-bibref",
+  "publisher": "coraldigital",
+  "name": "bibref",
+  "displayName": "BibRef",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@10.4.1",
@@ -72,7 +72,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.14.1",
     "@types/node": "^22.15.32",
-    "@types/vscode": "^1.101.0",
+    "@types/vscode": "^1.97.0",
     "@vscode/vsce": "^3.5.0",
     "bumpp": "^10.2.0",
     "eslint": "^9.29.0",
