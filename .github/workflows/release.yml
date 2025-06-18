@@ -4,6 +4,8 @@ permissions:
   contents: write
 
 on:
+  release:
+    types: [released,prereleased]
   workflow_dispatch:
     inputs:
       version:
@@ -39,9 +41,17 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Test
+      - name: Run tests
         run: pnpm run test
 
+      - name: Test vsce pack
+        run: |
+          echo "\n\n  # vsce ls\n"
+          pnpm exec vsce ls
+          echo "\n\n  # vsce pack\n"
+          pnpm exec vsce pack
+          echo "\n\n  # du -h *.vsix\n"
+          du -h *.vsix
 
   publish:
     runs-on: ubuntu-latest
@@ -63,6 +73,13 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
+      # Install & build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
       # ───────────────────────────────
       # Derive version and release type
       #
@@ -70,27 +87,36 @@ jobs:
       # v*.1.* => pré-release (MINOR is odd)
       # v*.2.* => release     (MINOR is even)
       # ───────────────────────────────
-      - name: Parse SemVer from tag
+      - name: Is pre-release?
         id: semver
         run: |
-          RAW="${TAG_NAME#v}"          # drop leading 'v'
-          echo "version=$RAW" >> "$GITHUB_OUTPUT"
-
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$RAW"
-          if (( MINOR % 2 )) || (( MAJOR == 0 && MINOR == 0 )); then
-            echo "prerelease=yes"  >> "$GITHUB_OUTPUT"   # odd or 0.0.x => pre-release
+          # Get version from tag input or from github release event
+          if [[ -n "$TAG_NAME" ]]; then
+              RAW="${TAG_NAME#v}"          # drop leading 'v'
           else
-            echo "prerelease=no"   >> "$GITHUB_OUTPUT"   # even => release
+              RAW="${GITHUB_REF#refs/tags/v}"  # From release event, drop refs/tags/v
           fi
 
-      # Install & build
-      - name: Install dependencies
-        run: pnpm install
+          echo "version=$RAW" >> "$GITHUB_OUTPUT"
 
-      - name: Build
-        run: pnpm run build
+          # For release events, use the event type directly
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+              if [[ "${{ github.event.action }}" == "prereleased" ]]; then
+                  echo "prerelease=yes" >> "$GITHUB_OUTPUT"
+              else
+                  echo "prerelease=no" >> "$GITHUB_OUTPUT"
+              fi
+          else
+              # For manual workflow, determine by version pattern
+              IFS='.' read -r MAJOR MINOR PATCH <<< "$RAW"
+              if (( MINOR % 2 )) || (( MAJOR == 0 && MINOR == 0 )); then
+                  echo "prerelease=yes" >> "$GITHUB_OUTPUT"   # odd or 0.0.x => pre-release
+              else
+                  echo "prerelease=no" >> "$GITHUB_OUTPUT"    # even => release
+              fi
+          fi
 
-      # Publish with or without --pre-release
+      # Publish
       - name: Publish to Marketplace
         run: |
           if [[ "${{ steps.semver.outputs.prerelease }}" == "yes" ]]; then
