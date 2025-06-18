@@ -9,7 +9,7 @@ import '@citation-js/plugin-pubmed'
 import '@citation-js/plugin-software-formats'
 import '@citation-js/plugin-wikidata'
 
-export default async function getBiblatexFromId(id: str): string {
+export async function getBiblatexFromId(id: str): string {
   logger.info(`\n\ngetBiblatexFromId('${id}') called.`)
 
   const cites = await Cite.async(id)

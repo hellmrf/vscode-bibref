@@ -1,6 +1,7 @@
 import { defineExtension, useCommands } from 'reactive-vscode'
 import * as vscode from 'vscode'
-import getBiblatexFromId from './gets'
+// import getBiblatexFromId from './gets'
+import { fetchBibFromId } from './commands'
 
 import { logger } from './utils'
 
@@ -14,28 +15,7 @@ const { activate, deactivate } = defineExtension(() => {
     'bibref.hello': () => {
       vscode.window.showInformationMessage('Hello World!')
     },
-    'bibref.fetchDOI': async () => {
-      const id = await vscode.window.showInputBox({ prompt: 'Enter a DOI, PMID, ISBN, Github URL, npm URL, ...' })
-      if (!id)
-        return
-
-      vscode.window.withProgress({
-        location: vscode.ProgressLocation.Notification,
-        title: `BibRef`,
-        cancellable: false,
-      }, (progress, _token) => {
-        progress.report({ message: `Fetching BibLaTeX for ${id}` })
-        const bib = getBiblatexFromId(id)
-        return bib.then((bib) => {
-          vscode.window.showInformationMessage(bib, { title: 'Copy', isCloseAffordance: false }).then((selection) => {
-            if (selection && selection.title === 'Copy') {
-              vscode.env.clipboard.writeText(bib)
-              vscode.window.showInformationMessage('Citation copied to clipboard!')
-            }
-          })
-        })
-      })
-    },
+    'bibref.fetchDOI': fetchBibFromId,
   })
 })
 
