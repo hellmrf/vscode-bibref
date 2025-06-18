@@ -24,18 +24,21 @@ Features marked with a ✅ are already implemented.
 
 ## Installation
 
-Install directly through the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=hellmrf.bibref):
+Install directly through the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=coraldigital.bibref):
 
 1. Launch **Visual Studio Code**.
 2. Press `Ctrl+Shift+X` (or click on the Extensions icon).
-3. Search for `bibref`.
+3. Search for `BibRef`.
 4. Click on **Install**.
 
 ## Quick Start
 
-* **Open** or **create** a BibTeX file (`.bib`) in your project.
+1. Press `Ctrl+Shift+P` or `F1` do open the Command Palette.
+2. Search for `BibRef`
+3. Run the command of your choice.
+<!-- * **Open** or **create** a BibTeX file (`.bib`) in your project.
 * Use the sidebar panel to manage and search entries.
-* Insert citations quickly by using the command palette (`Ctrl+Shift+P`) and typing `bibref: Insert Citation`.
+* Insert citations quickly by using the command palette (`Ctrl+Shift+P`) and typing `bibref: Insert Citation`. -->
 
 <!-- TODO: Detailed usage instructions will be added as features are implemented. -->
 
