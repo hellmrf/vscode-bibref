@@ -29,9 +29,6 @@
   "engines": {
     "vscode": "^1.97.0"
   },
-  "activationEvents": [
-    "onCommand:bibref.fetchDOI"
-  ],
   "contributes": {
     "commands": [
       {
@@ -53,9 +50,9 @@
     "update": "vscode-ext-gen --output src/generated/meta.ts",
     "lint": "eslint .",
     "vscode:prepublish": "pnpm run build",
-    "publish": "vsce publish --no-dependencies",
-    "prepublish": "vsce publish --pre-release --no-dependencies",
-    "pack": "vsce package --no-dependencies",
+    "publish": "vsce publish",
+    "prepublish": "vsce publish --pre-release",
+    "pack": "vsce package",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "tag": "bumpp"
