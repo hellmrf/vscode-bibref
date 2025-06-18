@@ -12,9 +12,6 @@ const { activate, deactivate } = defineExtension(() => {
   logger.info('vscode-bibref activated!')
 
   useCommands({
-    'bibref.hello': () => {
-      vscode.window.showInformationMessage('Hello World!')
-    },
     'bibref.fetchDOI': fetchBibFromId,
   })
 })

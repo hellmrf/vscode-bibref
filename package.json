@@ -35,14 +35,9 @@
   "contributes": {
     "commands": [
       {
-        "command": "bibref.hello",
-        "category": "BibRef",
-        "title": "Hello Command"
-      },
-      {
         "command": "bibref.fetchDOI",
         "category": "BibRef",
-        "title": "Fetch DOI"
+        "title": "Fetch from identifier..."
       }
     ],
     "configuration": {
