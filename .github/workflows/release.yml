@@ -5,11 +5,11 @@ permissions:
 
 on:
   release:
-    types: [released,prereleased]
+    types: [released, prereleased]
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version tag (vX.Y.Z)'
+        description: Version tag (vX.Y.Z)
         required: true
 
 jobs:
