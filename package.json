@@ -33,7 +33,18 @@
     "onStartupFinished"
   ],
   "contributes": {
-    "commands": [{ "command": "bibref.hello", "category": "BibRef", "title": "Hello Command" }],
+    "commands": [
+      {
+        "command": "bibref.hello",
+        "category": "BibRef",
+        "title": "Hello Command"
+      },
+      {
+        "command": "bibref.fetchDOI",
+        "category": "BibRef",
+        "title": "Fetch DOI"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "bibref",
@@ -56,7 +67,12 @@
   "dependencies": {
     "@citation-js/core": "^0.7.18",
     "@citation-js/plugin-bibtex": "^0.7.18",
-    "@citation-js/plugin-doi": "^0.7.18"
+    "@citation-js/plugin-csl": "^0.7.18",
+    "@citation-js/plugin-doi": "^0.7.18",
+    "@citation-js/plugin-isbn": "^0.4.0",
+    "@citation-js/plugin-pubmed": "^0.3.0",
+    "@citation-js/plugin-software-formats": "^0.6.1",
+    "@citation-js/plugin-wikidata": "^0.7.19"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.1",
