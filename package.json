@@ -2,7 +2,7 @@
   "publisher": "coraldigital",
   "name": "bibref",
   "displayName": "BibRef",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "description": "A VSCode Extension for BibLaTeX-friendly bibliography management",
