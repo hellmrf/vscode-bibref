@@ -31,3 +31,5 @@ jobs:
 
       - name: Publish
         run: pnpm run publish
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
