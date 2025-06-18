@@ -33,7 +33,7 @@
     "onStartupFinished"
   ],
   "contributes": {
-    "commands": [],
+    "commands": [{ "command": "bibref.hello", "category": "BibRef", "title": "Hello Command" }],
     "configuration": {
       "type": "object",
       "title": "bibref",
