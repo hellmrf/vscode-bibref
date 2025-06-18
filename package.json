@@ -53,6 +53,11 @@
     "typecheck": "tsc --noEmit",
     "release": "bumpp && pnpm run publish"
   },
+  "dependencies": {
+    "@citation-js/core": "^0.7.18",
+    "@citation-js/plugin-bibtex": "^0.7.18",
+    "@citation-js/plugin-doi": "^0.7.18"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.1",
     "@types/node": "^22.13.4",
