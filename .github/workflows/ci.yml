@@ -4,33 +4,14 @@ on:
   push:
     branches:
       - main
+      - dev/dev
 
   pull_request:
     branches:
       - main
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - name: Install
-        run: pnpm install
-
-      - name: Lint
-        run: pnpm run lint
-
-  typecheck:
+  staticcheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -47,12 +28,15 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Lint
+        run: pnpm run lint
+
       - name: Typecheck
         run: pnpm run typecheck
 
   test:
     runs-on: ${{ matrix.os }}
-
+    needs: staticcheck
     strategy:
       matrix:
         node: [lts/*]
