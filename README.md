@@ -1,4 +1,4 @@
-# BibRef: A VSCode Extension for $\text{Bib}\LaTeX$-friendly bibliography management
+# `BibRef`: A VSCode Extension for BibLaTeX-friendly bibliography management
 
 <!-- [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/hellmrf.bibref.svg?color=007ACC\&label=VS%20Code%20Marketplace\&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=hellmrf.bibref) -->
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](./LICENSE.md)
