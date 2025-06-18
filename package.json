@@ -29,9 +29,7 @@
   "engines": {
     "vscode": "^1.97.0"
   },
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": [],
   "contributes": {
     "commands": [
       {
@@ -54,6 +52,7 @@
     "lint": "eslint .",
     "vscode:prepublish": "pnpm run build",
     "publish": "vsce publish --no-dependencies",
+    "prepublish": "vsce publish --pre-release --no-dependencies",
     "pack": "vsce package --no-dependencies",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
@@ -65,7 +64,6 @@
     "@citation-js/plugin-csl": "^0.7.18",
     "@citation-js/plugin-doi": "^0.7.18",
     "@citation-js/plugin-isbn": "^0.4.0",
-    "@citation-js/plugin-pubmed": "^0.3.0",
     "@citation-js/plugin-software-formats": "^0.6.1",
     "@citation-js/plugin-wikidata": "^0.7.19"
   },

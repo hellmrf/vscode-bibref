@@ -5,21 +5,21 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "dev",
+      "script": "build",
       "isBackground": true,
       "presentation": {
         "reveal": "never"
       },
-      "problemMatcher": [
-        {
-          "base": "$tsc-watch",
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "Build start",
-            "endsPattern": "(B|Reb)uild complete"
-          }
+      "problemMatcher": {
+        "owner": "typescript",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Build start",
+          "endsPattern": "(B|Reb)uild complete"
         }
-      ],
+      },
       "group": "build"
     }
   ]
