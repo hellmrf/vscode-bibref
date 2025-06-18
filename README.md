@@ -1,32 +1,54 @@
-# ext-name
+# BibRef: A VSCode Extension for $\text{Bib}\LaTeX$-friendly bibliography management
 
-<a href="https://marketplace.visualstudio.com/items?itemName=antfu.ext-name" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/antfu.ext-name.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
-<a href="https://kermanx.github.io/reactive-vscode/" target="__blank"><img src="https://img.shields.io/badge/made_with-reactive--vscode-%23007ACC?style=flat&labelColor=%23229863"  alt="Made with reactive-vscode" /></a>
+<!-- [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/hellmrf.bibref.svg?color=007ACC\&label=VS%20Code%20Marketplace\&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=hellmrf.bibref) -->
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](./LICENSE.md)
 
-## Configurations
+## Overview
 
-<!-- configs -->
+`BibRef` **will be** a Visual Studio Code extension designed to streamline your management of BibTeX and BibLaTeX bibliographies. Seamlessly integrated within VSCode, it simplifies the creation, editing, and insertion of academic references directly into your LaTeX, Markdown, or Typst documents.
 
-**No data**
+> ⚠️ **This extension is in a very early development phase**, closest to _idea_ than to _MVP_. This README may not reflect the already implemented features. Feel free to contribute by reaching out to me or just sending PRs directly.
 
-<!-- configs -->
+## Features
 
-## Commands
+* **Create and edit** BibTeX and BibLaTeX entries quickly via intuitive forms.
+* **Search and organize** references with advanced filtering and sorting.
+* **Automatic metadata retrieval** using DOI or ISBN identifiers.
+* **Inline citation insertion** tailored to document type (LaTeX, Markdown, Typst).
+* **Validation and linting** for cleaner, consistent bibliography files.
+* Integration with existing LaTeX workflows (compatible with [LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop)).
 
-<!-- commands -->
+## Installation
 
-**No data**
+Install directly through the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=hellmrf.bibref):
 
-<!-- commands -->
+1. Launch **Visual Studio Code**.
+2. Press `Ctrl+Shift+X` (or click on the Extensions icon).
+3. Search for `bibref`.
+4. Click on **Install**.
 
-## Sponsors
+## Quick Start
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.png'/>
-  </a>
-</p>
+* **Open** or **create** a BibTeX file (`.bib`) in your project.
+* Use the sidebar panel to manage and search entries.
+* Insert citations quickly by using the command palette (`Ctrl+Shift+P`) and typing `bibref: Insert Citation`.
+
+<!-- TODO: Detailed usage instructions will be added as features are implemented. -->
+
+## Roadmap
+
+Future enhancements include:
+
+* Support for additional bibliography formats (CSL-JSON, RIS).
+* Cloud synchronization via WebDAV/Git.
+* PDF attachment and metadata extraction.
+* AI-powered metadata enrichment.
+
+## Contributing
+
+Contributions are warmly welcomed! Please open issues or submit pull requests on the project's [GitHub repository](https://github.com/hellmrf/vscode-bibref).
 
 ## License
 
-[MIT](./LICENSE.md) License © 2022 [Anthony Fu](https://github.com/antfu)
+Licensed under the **[GPL-3.0 License](./LICENSE.md)**.
+© 2025 Heliton Martins ([`@hellmrf`](https://github.com/hellmrf)).
