@@ -1,6 +1,4 @@
 import { defineExtension, useCommands } from 'reactive-vscode'
-import * as vscode from 'vscode'
-// import getBiblatexFromId from './gets'
 import { fetchBibFromId } from './commands'
 
 import { logger } from './utils'
