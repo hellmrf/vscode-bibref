@@ -7,13 +7,17 @@
 
 `BibRef` **will be** a Visual Studio Code extension designed to streamline your management of BibTeX and BibLaTeX bibliographies. Seamlessly integrated within VSCode, it simplifies the creation, editing, and insertion of academic references directly into your LaTeX, Markdown, or Typst documents.
 
+![examples/demo_fetchDOI.gif](examples/demo_fetchDOI.gif)
+
 > ⚠️ **This extension is in a very early development phase**, closest to _idea_ than to _MVP_. This README may not reflect the already implemented features. Feel free to contribute by reaching out to me or just sending PRs directly.
 
 ## Features
 
+Features marked with a ✅ are already implemented.
+
+* ✅ **Automatic metadata retrieval** using DOI or ISBN identifiers.
 * **Create and edit** BibTeX and BibLaTeX entries quickly via intuitive forms.
 * **Search and organize** references with advanced filtering and sorting.
-* **Automatic metadata retrieval** using DOI or ISBN identifiers.
 * **Inline citation insertion** tailored to document type (LaTeX, Markdown, Typst).
 * **Validation and linting** for cleaner, consistent bibliography files.
 * Integration with existing LaTeX workflows (compatible with [LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop)).
