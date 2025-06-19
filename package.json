@@ -2,7 +2,7 @@
   "publisher": "coraldigital",
   "name": "bibref",
   "displayName": "BibRef",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "description": "A VSCode Extension for BibLaTeX-friendly bibliography management",
@@ -55,7 +55,8 @@
     "pack": "vsce package",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "tag": "bumpp"
+    "tag": "bumpp",
+    "check": "pnpm run lint && pnpm run typecheck"
   },
   "dependencies": {
     "@citation-js/core": "^0.7.18",
