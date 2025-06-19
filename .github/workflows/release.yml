@@ -4,8 +4,6 @@ permissions:
   contents: write
 
 on:
-  # release:
-  #   types: [released, prereleased]
   push:
     branches:
       - main
@@ -66,23 +64,13 @@ jobs:
 
           echo "version=$RAW" >> "$GITHUB_OUTPUT"
 
-          # For release events, use the event type directly
-          # if [[ "${{ github.event_name }}" == "release" ]]; then
-          #     if [[ "${{ github.event.action }}" == "prereleased" ]]; then
-          #         echo "prerelease=yes" >> "$GITHUB_OUTPUT"
-          #     else
-          #         echo "prerelease=no" >> "$GITHUB_OUTPUT"
-          #     fi
-          # else
-              # For manual workflow, determine by version pattern
-              IFS='.' read -r MAJOR MINOR PATCH <<< "$RAW"
-              if (( MINOR % 2 )) || (( MAJOR == 0 && MINOR == 0 )); then
-                  echo "prerelease=yes" >> "$GITHUB_OUTPUT"   # odd or 0.0.x => pre-release
-              else
-                  echo "prerelease=no" >> "$GITHUB_OUTPUT"    # even => release
-              fi
-          #fi
-
+          # Read version as 'vMAJOR.MINOR.PATCH'
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$RAW"
+          if (( MINOR % 2 )) || (( MAJOR == 0 && MINOR == 0 )); then
+              echo "prerelease=yes" >> "$GITHUB_OUTPUT"   # odd or 0.0.x => pre-release
+          else
+              echo "prerelease=no" >> "$GITHUB_OUTPUT"    # even => release
+          fi
       # Publish
       - name: Publish to Marketplace
         run: |
