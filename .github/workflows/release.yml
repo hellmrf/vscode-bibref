@@ -72,8 +72,8 @@ jobs:
       # Publish
       - name: Publish to Marketplace
         run: |
-          if [[ "${{ steps.semver.outputs.prerelease }}" == "yes" ]]; then
-            pnpm run prepublish
+          if [ "${{ steps.semver.outputs.prerelease }}" = "yes" ]; then
+            pnpm run publish --pre-release
           else
             pnpm run publish
           fi
