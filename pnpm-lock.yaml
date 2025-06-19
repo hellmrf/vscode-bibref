@@ -37,7 +37,7 @@ importers:
         specifier: ^22.15.32
         version: 22.15.32
       '@types/vscode':
-        specifier: 1.97.0
+        specifier: ^1.97.0
         version: 1.97.0
       '@vscode/vsce':
         specifier: ^3.5.0
