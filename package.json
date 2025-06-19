@@ -44,12 +44,14 @@
     }
   },
   "scripts": {
-    "build": "tsdown src/index.ts --external vscode",
+    "tsdbuild": "tsdown src/index.ts --external vscode",
+    "build": "rm -rf dist && webpack",
+    "webpack": "webpack",
     "dev": "pnpm run build --watch --sourcemap",
     "prepare": "pnpm run update",
     "update": "vscode-ext-gen --output src/generated/meta.ts",
     "lint": "eslint .",
-    "vscode:prepublish": "pnpm run build",
+    "vscode:prepublish": "pnpm run webpack",
     "publish": "vsce publish",
     "prepublish": "vsce publish --pre-release",
     "pack": "vsce package",
@@ -70,18 +72,21 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.14.1",
     "@types/node": "^22.15.32",
-    "@types/vscode": "^1.97.0",
+    "@types/vscode": "1.97.0",
     "@vscode/vsce": "^3.5.0",
     "bumpp": "^10.2.0",
     "eslint": "^9.29.0",
     "esno": "^4.8.0",
     "pnpm": "^10.12.1",
     "reactive-vscode": "^0.2.19",
+    "ts-loader": "^9.5.2",
     "tsdown": "^0.9.9",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.4",
-    "vscode-ext-gen": "^1.0.2"
+    "vscode-ext-gen": "^1.0.2",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^5.1.4"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
