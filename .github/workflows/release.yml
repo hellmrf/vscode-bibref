@@ -4,65 +4,24 @@ permissions:
   contents: write
 
 on:
-  release:
-    types: [released, prereleased]
-  workflow_dispatch:
-    inputs:
-      version:
-        description: Version tag (vX.Y.Z)
-        required: true
+  # release:
+  #   types: [released, prereleased]
+  push:
+    branches:
+      - main
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: [lts/*]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-      fail-fast: false
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.version }}
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node version to ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: pnpm
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm run build
-
-      - name: Run tests
-        run: pnpm run test
-
-      - name: Test vsce pack
-        run: |
-          echo "\n\n  # vsce ls\n"
-          pnpm exec vsce ls
-          echo "\n\n  # vsce pack\n"
-          pnpm exec vsce pack
-          echo "\n\n  # du -h *.vsix\n"
-          du -h *.vsix
-
   publish:
     runs-on: ubuntu-latest
-    needs: test
     env:
-      TAG_NAME: ${{ github.event.inputs.version }}
+      TAG_NAME: ${{ github.ref_name }}
 
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.version }}
+          ref: ${{ github.ref }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -80,6 +39,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Test vsce pack
+        run: |
+          echo "\n\n  # vsce ls\n"
+          pnpm exec vsce ls --tree
+          echo "\n\n  # vsce pack\n"
+          pnpm exec vsce pack
+          echo "\n\n  # du -h *.vsix\n"
+          du -h *.vsix
       # ───────────────────────────────
       # Derive version and release type
       #
@@ -100,13 +67,13 @@ jobs:
           echo "version=$RAW" >> "$GITHUB_OUTPUT"
 
           # For release events, use the event type directly
-          if [[ "${{ github.event_name }}" == "release" ]]; then
-              if [[ "${{ github.event.action }}" == "prereleased" ]]; then
-                  echo "prerelease=yes" >> "$GITHUB_OUTPUT"
-              else
-                  echo "prerelease=no" >> "$GITHUB_OUTPUT"
-              fi
-          else
+          # if [[ "${{ github.event_name }}" == "release" ]]; then
+          #     if [[ "${{ github.event.action }}" == "prereleased" ]]; then
+          #         echo "prerelease=yes" >> "$GITHUB_OUTPUT"
+          #     else
+          #         echo "prerelease=no" >> "$GITHUB_OUTPUT"
+          #     fi
+          # else
               # For manual workflow, determine by version pattern
               IFS='.' read -r MAJOR MINOR PATCH <<< "$RAW"
               if (( MINOR % 2 )) || (( MAJOR == 0 && MINOR == 0 )); then
@@ -114,7 +81,7 @@ jobs:
               else
                   echo "prerelease=no" >> "$GITHUB_OUTPUT"    # even => release
               fi
-          fi
+          #fi
 
       # Publish
       - name: Publish to Marketplace
